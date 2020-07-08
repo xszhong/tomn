@@ -1,0 +1,18 @@
+#!/usr/bin/env bash  
+  
+cd extract_feature_bilou
+./extract_feature_bilou.sh
+
+cd ../crfsuite_bilou
+./learn.sh
+./tag.sh
+
+cd ../induce_bilou_tml
+./induce_bilou_trad_tml.sh
+cd ../evaluation/bilou-trad
+./evaluation.sh
+
+cd ../../induce_bilou_tml
+./induce_bilou_nonO_tml.sh
+cd ../evaluation/bilou-nonO
+./evaluation.sh

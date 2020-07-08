@@ -1,0 +1,13 @@
+#!/usr/bin/env bash  
+  
+source ../project_setting.bsh
+
+cd ${source_dir}
+javac -nowarn -cp ${CLASSPATH} -d ${class_dir} ntu/scse/jcrfsuite/JcrfsuiteTrain.java
+
+# training
+input_train_feature=${data_dir}/wikiwars/trainingset/feature/trainingset.feature
+output_model=${data_dir}/wikiwars/trainingset/model/wikiwars.model
+
+command_code="java -Xms512m -Xmx1g -Dfile.encoding=UTF8 -cp ${CLASSPATH} ntu/scse/jcrfsuite/JcrfsuiteTrain"
+${command_code} ${input_train_feature} ${output_model}

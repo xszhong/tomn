@@ -1,0 +1,30 @@
+#!/usr/bin/env bash  
+  
+source ../project_setting.bsh
+
+cd ${source_dir}
+javac -nowarn -cp ${CLASSPATH} -d ${class_dir} ntu/scse/feature/ExtractFeature.java
+
+# training
+input_tml_dir=${data_dir}/te3/TimeBank/tml
+output_feature_dir=${data_dir}/te3/TimeBank/feature
+output_script_dir=${command_dir}/crfsuite
+model_dir=${data_dir}/te3/TimeBank/model
+model_filename=TimeBank.model
+crf_log_dir=${data_dir}/te3/TimeBank/crflog
+is_train=true;
+
+command_code="java -Xms512m -Xmx1g -Dfile.encoding=UTF8 -cp ${CLASSPATH} ntu/scse/feature/ExtractFeature"
+${command_code} ${input_tml_dir} ${output_feature_dir} ${output_script_dir} ${model_dir} ${model_filename} ${crf_log_dir} ${is_train}
+
+# test
+input_tml_dir=${data_dir}/te3/te3-platinum/tml
+output_feature_dir=${data_dir}/te3/te3-platinum/feature
+output_script_dir=${command_dir}/crfsuite
+model_dir=${data_dir}/te3/TimeBank/model
+model_filename=TimeBank.model
+crf_log_dir=${data_dir}/te3/te3-platinum/crflog
+is_train=false;
+
+command_code="java -Xms512m -Xmx1g -Dfile.encoding=UTF8 -cp ${CLASSPATH} ntu.scse/feature/ExtractFeature"
+${command_code} ${input_tml_dir} ${output_feature_dir} ${output_script_dir} ${model_dir} ${model_filename} ${crf_log_dir} ${is_train}

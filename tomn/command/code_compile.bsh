@@ -1,0 +1,15 @@
+#!/usr/bin/env bash  
+  
+source ./project_setting.bsh  
+  
+pushd
+cd ${source_dir}
+  
+javac -nowarn -cp ${CLASSPATH} -d ${class_dir} ntu/scse/feature/*.java
+javac -nowarn -cp ${CLASSPATH} -d ${class_dir} ntu/scse/jcrfsuite/*.java
+javac -nowarn -cp ${CLASSPATH} -d ${class_dir} ntu/scse/postprocess/*.java
+javac -nowarn -cp ${CLASSPATH} -d ${class_dir} ntu/scse/struct/*.java
+javac -nowarn -cp ${CLASSPATH} -d ${class_dir} ntu/scse/tool/*.java
+javac -nowarn -cp ${CLASSPATH} -d ${class_dir} ntu/scse/util/*.java
+  
+popd

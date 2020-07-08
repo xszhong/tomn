@@ -1,0 +1,18 @@
+#!/usr/bin/env bash  
+  
+cd extract_feature_bio
+./extract_feature_bio.sh
+
+cd ../crfsuite_bio
+./learn.sh
+./tag.sh
+
+cd ../induce_bio_tml
+./induce_bio_trad_tml.sh
+cd ../evaluation/bio-trad
+./evaluation.sh
+
+cd ../../induce_bio_tml
+./induce_bio_nonO_tml.sh
+cd ../evaluation/bio-nonO
+./evaluation.sh

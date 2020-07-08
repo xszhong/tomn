@@ -1,0 +1,11 @@
+#!/usr/bin/env bash  
+  
+cd extract_feature_tomn
+./extract_feature_tomn.sh
+
+cd ../jcrfsuite_tomn
+./train.sh
+./tag.sh
+
+cd ../induce_tomn_tml
+./induce_tomn_tml.sh

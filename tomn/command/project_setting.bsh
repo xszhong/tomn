@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+export WORKHOME=/Users/Mathew/Java/projects
+export project_name=tomn
+
+export project_dir=${WORKHOME}/${project_name}
+export source_dir=${project_dir}/src
+export class_dir=${project_dir}/bin
+export CLASSPATH=.:${class_dir}:${CLASSPATH}
+export data_dir=${project_dir}/resources
+export evaluation_dir=${project_dir}/evaluation
+export evaluation_tool_dir=${evaluation_dir}/tools
+export evaluation_result_dir=${evaluation_dir}/result
+
+export command_dir=${project_dir}/command
+export script_dir=${project_dir}/script
+
+export JAR_dir=${project_dir}/lib
+
+JAR_dir_path=
+function loadjars(){
+    for file in ${JAR_dir}/*.jar
+        do
+        if [ -f $file ]
+        then JAR_dir_path=${JAR_dir_path}:${file}
+        fi
+        done
+} 
+  
+loadjars
+ 
+export CLASSPATH=.:${class_dir}:${JAR_dir_path}:${CLASSPATH}

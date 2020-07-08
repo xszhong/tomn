@@ -1,0 +1,14 @@
+#!/usr/bin/env bash  
+  
+source ../project_setting.bsh
+
+cd ${source_dir}
+javac -nowarn -cp ${CLASSPATH} -d ${class_dir} ntu/scse/jcrfsuite/JcrfsuiteTag.java
+
+# tagging
+input_model=${data_dir}/tweets/trainingset/model/tweets.model
+input_test_dir=${data_dir}/tweets/testset/feature/
+output_tag_dir=${data_dir}/tweets/testset/tweets-tag-wikiwars-crflog/
+
+command_code="java -Xms512m -Xmx1g -Dfile.encoding=UTF8 -cp ${CLASSPATH} ntu/scse/jcrfsuite/JcrfsuiteTag"
+${command_code} ${input_model} ${input_test_dir} ${output_tag_dir}

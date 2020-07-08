@@ -1,0 +1,15 @@
+#!/usr/bin/env bash  
+  
+source ../project_setting.bsh
+
+cd ${source_dir}
+javac -nowarn -cp ${CLASSPATH} -d ${class_dir} ntu/scse/postprocess/InduceBilouAnnotatedTml.java
+
+input_tml_dir=${data_dir}/te3/te3-platinum/tml
+crf_log_dir=${data_dir}/te3/te3-platinum/bilou/crflog
+output_timeml_dir=${data_dir}/te3/te3-platinum/bilou/TimeML-output
+output_shell_dir=${command_dir}/evaluation/bilou-trad
+
+command_code="java -Xms512m -Xmx1g -Dfile.encoding=UTF8 -cp ${CLASSPATH} ntu/scse/postprocess/InduceBilouAnnotatedTml"
+
+${command_code} ${input_tml_dir} ${crf_log_dir} ${output_timeml_dir} ${output_shell_dir} ${evaluation_dir}
